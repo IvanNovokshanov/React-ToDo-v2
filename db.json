@@ -1,0 +1,60 @@
+{
+  "posts": [
+    {
+      "id": "wodCVSSduB6yEtgOadq9g",
+      "title": "Погулять с собакой",
+      "completed": false,
+      "important": false,
+      "date": "27.09.2022, 13:41:13"
+    },
+    {
+      "id": "aV_Bt5Z3K6nyHWcSXehId",
+      "title": "Выпить пиво",
+      "completed": false,
+      "important": false,
+      "date": "01.11.2022, 00:36:28"
+    },
+    {
+      "id": "fkfTHOFbGbm-LoNahCm0j",
+      "title": "Поиграть с детьми ",
+      "completed": false,
+      "important": true,
+      "date": "01.11.2022, 00:39:58"
+    },
+    {
+      "id": "-aM3fVMAEX0JdTkAGf8nH",
+      "title": "Проверить код на ошибки",
+      "completed": false,
+      "important": false,
+      "date": "01.11.2022, 00:40:06"
+    },
+    {
+      "id": "rfydmXxp8OO-31s7f_y-b",
+      "title": "Добавить кнопки",
+      "completed": true,
+      "important": false,
+      "date": "01.11.2022, 00:40:19"
+    },
+    {
+      "id": "JBM-bCcNT5aYZiv2bMb_V",
+      "title": "Отдохнуть",
+      "completed": false,
+      "important": true,
+      "date": "01.11.2022, 00:40:26"
+    },
+    {
+      "id": "q6e8SPlih2rIP_PQd3Lbb",
+      "title": "Залить на GitHub",
+      "completed": true,
+      "important": false,
+      "date": "01.11.2022, 00:40:40"
+    },
+    {
+      "id": "hq31FNkRuP5noOhba1N8b",
+      "title": "Еще пару тестов",
+      "completed": true,
+      "important": false,
+      "date": "01.11.2022, 00:41:24"
+    }
+  ]
+}

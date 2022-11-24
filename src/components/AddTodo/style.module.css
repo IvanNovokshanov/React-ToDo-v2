@@ -1,0 +1,29 @@
+.buttonAdd {
+	background-color: aqua;
+}
+.addTodoBlock {
+	display: flex;
+	justify-content: center;
+	padding-top: 60px;
+}
+.inputArea {
+	border: 1px solid;
+	padding: 8px 15px;
+	width: 600px;
+	border-radius: 10px;
+	height: 22px;
+	font-size: 18px;
+}
+.img {
+	width: 90px;
+	height: 90px;
+}
+.imgBlock {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.title {
+	font-size: 40px;
+	color: rgb(59, 67, 70);
+}

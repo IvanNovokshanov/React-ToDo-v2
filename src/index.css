@@ -1,0 +1,42 @@
+.root {
+	/* background-color: rgb(250, 250, 247); */
+	width: 1400px;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+.toggleButton {
+	color: rgb(32, 246, 118);
+	font-size: 40px;
+	cursor: pointer;
+}
+.toggleButton:hover {
+	font-size: 50px;
+}
+.importantButton {
+	padding-left: 15px;
+	color: rgb(245, 97, 97);
+	font-size: 40px;
+	cursor: pointer;
+}
+.importantButton:hover {
+	font-size: 50px;
+}
+.deleteButton {
+	padding-left: 15px;
+	color: rgb(65, 64, 64);
+	font-size: 40px;
+	cursor: pointer;
+}
+.deleteButton:hover {
+	font-size: 50px;
+}
+
+.buttonAdd {
+	padding-left: 15px;
+	color: rgb(113, 124, 246);
+	font-size: 40px;
+	cursor: pointer;
+}
+/* .buttonAdd:hover {
+	font-size: 50px;
+} */
