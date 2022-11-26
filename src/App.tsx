@@ -1,29 +1,45 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { AddTodo } from './components/AddTodo';
-import { TodoList } from './components/TodoList';
-import { getTodosFetch } from './api';
-import { ITodo, List } from './models';
-
-interface stateProps {
-	todos: ITodo[];
-}
+import React from 'react';
+import { Routes, Route, useParams } from 'react-router-dom';
+import { HomePage } from './Pages/Home/components/HomePage';
+import { AddTodo } from './Pages/TodoList/components/AddTodo';
+import { TodoList } from './Pages/TodoList/components/TodoList';
 
 export const App = () => {
-	const todosSli = useSelector(state => state.todo.todos);
-
-	const [todos, setTodos] = useState([]);
-	useEffect(() => {
-		(async () => {
-			const response = await getTodosFetch();
-			setTodos(response);
-		})();
-	}, [todosSli]);
-
 	return (
 		<div className="root">
-			<AddTodo />
-			<TodoList todos={todos} />
+			<Routes>
+				<Route path="/" element={<HomePage />} />
+
+				<Route
+					path="/task/:project"
+					element={
+						<>
+							<AddTodo />
+							<TodoList />
+						</>
+					}
+				/>
+			</Routes>
 		</div>
 	);
 };
+
+// export const App = () => {
+// 	return (
+// 		<div className="root">
+// 			<Routes>
+// 				<Route path="/" element={<HomePage />} />
+
+// 				<Route
+// 					path="/task"
+// 					element={
+// 						<>
+// 							<AddTodo />
+// 							<TodoList />
+// 						</>
+// 					}
+// 				/>
+// 			</Routes>
+// 		</div>
+// 	);
+// };

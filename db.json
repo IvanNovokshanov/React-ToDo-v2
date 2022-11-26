@@ -1,7 +1,53 @@
 {
+  "projects": [
+    {
+      "id": "1",
+      "project": "Сбербанк",
+      "tasks": [
+        {
+          "id": 1,
+          "describe": "Первая Сбербанк"
+        },
+        {
+          "id": 2,
+          "describe": "Вторая Сбербанк"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "project": "ВТБ",
+      "tasks": [
+        {
+          "id": 1,
+          "describe": "Первая ВТБ"
+        },
+        {
+          "id": 2,
+          "describe": "Вторая ВТБ"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "project": "Альфа Банк",
+      "tasks": [
+        {
+          "id": 1,
+          "describe": "Первая Альфа Банк"
+        },
+        {
+          "id": 2,
+          "describe": "Вторая Альфа Банк"
+        }
+      ]
+    }
+  ],
   "posts": [
     {
       "id": "wodCVSSduB6yEtgOadq9g",
+      "project": "ВТБ",
+      "group": "site",
       "title": "Погулять с собакой",
       "completed": false,
       "important": false,
@@ -9,6 +55,7 @@
     },
     {
       "id": "aV_Bt5Z3K6nyHWcSXehId",
+      "project": "Сбербанк",
       "title": "Выпить пиво",
       "completed": false,
       "important": false,
@@ -16,6 +63,7 @@
     },
     {
       "id": "fkfTHOFbGbm-LoNahCm0j",
+      "project": "ВТБ",
       "title": "Поиграть с детьми ",
       "completed": false,
       "important": true,
@@ -23,6 +71,7 @@
     },
     {
       "id": "-aM3fVMAEX0JdTkAGf8nH",
+      "project": "ВТБ",
       "title": "Проверить код на ошибки",
       "completed": false,
       "important": false,
@@ -30,6 +79,7 @@
     },
     {
       "id": "rfydmXxp8OO-31s7f_y-b",
+      "project": "ВТБ",
       "title": "Добавить кнопки",
       "completed": true,
       "important": false,
@@ -37,6 +87,7 @@
     },
     {
       "id": "JBM-bCcNT5aYZiv2bMb_V",
+      "project": "Альфа Банк",
       "title": "Отдохнуть",
       "completed": false,
       "important": true,
@@ -44,17 +95,83 @@
     },
     {
       "id": "q6e8SPlih2rIP_PQd3Lbb",
+      "project": "Альфа Банк",
       "title": "Залить на GitHub",
       "completed": true,
       "important": false,
       "date": "01.11.2022, 00:40:40"
     },
     {
-      "id": "hq31FNkRuP5noOhba1N8b",
-      "title": "Еще пару тестов",
-      "completed": true,
+      "id": "-_lKbxA1XWS2Q254HoxHq",
+      "project": "Сбербанк",
+      "title": "Новые тесты",
+      "completed": false,
       "important": false,
-      "date": "01.11.2022, 00:41:24"
+      "date": "24.11.2022, 18:53:15"
+    },
+    {
+      "id": "RGft4rj7oqyfWwNd4R7Jc",
+      "project": "Сбербанк",
+      "title": "мммм",
+      "completed": false,
+      "important": false,
+      "date": "25.11.2022, 00:13:49"
+    },
+    {
+      "id": "GMOFs5UXjdZ2EAw1Gx40h",
+      "title": "тест",
+      "completed": false,
+      "important": false,
+      "date": "25.11.2022, 20:31:00"
+    },
+    {
+      "id": "fLP9B3K6mKoY9nJe5jkx0",
+      "project": "Сбербанк",
+      "title": "bdffff",
+      "completed": false,
+      "important": false,
+      "date": "25.11.2022, 20:41:04"
+    },
+    {
+      "id": "AG6qxOmqAr5CW_OYk_Yom",
+      "project": "ВТБ",
+      "title": "ALPHA",
+      "completed": false,
+      "important": false,
+      "date": "25.11.2022, 20:43:21"
+    },
+    {
+      "id": "_N2maakfbjmtAM-fHt7jq",
+      "project": "Альфа Банк",
+      "title": "Ivan",
+      "completed": false,
+      "important": false,
+      "date": "26.11.2022, 12:30:53"
+    },
+    {
+      "id": "JN7VsVkTGwDP2vZJVgrsC",
+      "project": "ВТБ",
+      "title": "VTB",
+      "completed": false,
+      "important": false,
+      "date": "26.11.2022, 12:34:39"
+    },
+    {
+      "id": "thMeEUYWfa2W1COjeuWpo",
+      "project": "Альфа Банк",
+      "title": "alpha test",
+      "completed": false,
+      "important": false,
+      "date": "26.11.2022, 16:26:41"
+    },
+    {
+      "id": "TYiE6YMrH4p9a-QWji39_",
+      "project": "Альфа Банк",
+      "title": "проверяем ",
+      "description": "тут дескрипшен",
+      "completed": false,
+      "important": false,
+      "date": "26.11.2022, 17:00:42"
     }
   ]
 }

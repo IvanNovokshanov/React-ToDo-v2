@@ -1,8 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { getTodosFetch } from '../../api';
 import { useDispatch } from 'react-redux';
 import {
-	getTodosFetch,
-	postTodoFetch,
 	completeTodoFetch,
 	importantTodoFetch,
 	deleteTodoFetch
@@ -25,6 +24,11 @@ export const todoSlice = createSlice({
 		addTodo: (state, action) => ({
 			...state,
 			todos: state.todos.concat(action.payload)
+		}),
+		getTodosAction: (state, action) => ({
+			...state,
+
+			todos: action.payload
 		}),
 		toggleCompleted: (state, action) => ({
 			...state,
@@ -49,6 +53,11 @@ export const todoSlice = createSlice({
 	}
 });
 
+export const getTodosThunk = () => async (dispatch: AppDispatch) => {
+	const response = await getTodosFetch();
+	dispatch(getTodosAction(response));
+};
+
 export const toggleThunk =
 	(id: string, todo: ITodo) => async (dispatch: AppDispatch) => {
 		const newTodo = { ...todo, completed: !todo.completed };
@@ -66,7 +75,12 @@ export const deleteThunk = (id: string) => async (dispatch: AppDispatch) => {
 	dispatch(deleteTodo(id));
 };
 
-export const { addTodo, toggleCompleted, importantCompleted, deleteTodo } =
-	todoSlice.actions;
+export const {
+	addTodo,
+	toggleCompleted,
+	importantCompleted,
+	deleteTodo,
+	getTodosAction
+} = todoSlice.actions;
 
 export const todoSliceReducer = todoSlice.reducer;

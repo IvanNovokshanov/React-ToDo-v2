@@ -3,6 +3,10 @@ export const getTodosFetch = async () => {
 	const response = await fetch('http://localhost:3000/posts');
 	return await response.json();
 };
+export const getProjectsFetch = async () => {
+	const response = await fetch('http://localhost:3000/projects');
+	return await response.json();
+};
 
 export const postTodoFetch = async (todo: ITodo) => {
 	const response = await fetch('http://localhost:3000/posts', {
