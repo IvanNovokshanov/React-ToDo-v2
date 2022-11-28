@@ -9,8 +9,9 @@
 	margin: 20px;
 	border-radius: 10px;
 	font-size: 20px;
-	width: 400px;
+	width: 300px;
 }
+
 .todo:hover {
 	background-color: rgb(228, 226, 226);
 }
@@ -19,7 +20,7 @@
 }
 .imp {
 	color: rgb(238, 35, 167);
-	font-weight: 800;
+	/* font-weight: 800; */
 }
 .buttonGroup {
 	display: flex;
@@ -27,4 +28,9 @@
 .date {
 	margin-right: 15px;
 	font-size: 15px;
+}
+.title_text {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	cursor: pointer;
 }

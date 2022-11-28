@@ -42,7 +42,7 @@ export const todoSlice = createSlice({
 			...state,
 			todos: state.todos.map(obj =>
 				obj.id === action.payload
-					? { ...obj, completed: !obj.completed }
+					? { ...obj, important: !obj.important }
 					: obj
 			)
 		}),

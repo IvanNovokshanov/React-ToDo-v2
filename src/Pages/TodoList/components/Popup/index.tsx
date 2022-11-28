@@ -1,15 +1,26 @@
 import React, { FC } from 'react';
 import style from './style.module.css';
+import close from '../../../../../public/images/close.svg';
+import { ITodo } from '../../../../models';
 
-export const Popup = ({ closePopup }) => {
+interface IPopupProps {
+	closePopup: () => void;
+	dataPopup: ITodo | undefined;
+}
+
+export const Popup: FC<IPopupProps> = ({ closePopup, dataPopup }) => {
+	console.log('dataPopup', dataPopup);
+
 	return (
 		<>
 			<div className={style.blur}></div>
 			<div className={style.popup}>
-				POPUP
-				<div className={style.close} onClick={closePopup}>
-					<img src="../../../../../public/images/close.svg" />
+				<div className={style.popup_container}>
+					<div>{dataPopup?.title}</div>
+					<div>{dataPopup?.description}</div>
 				</div>
+
+				<img className={style.close} src={close} onClick={closePopup} />
 			</div>
 		</>
 	);

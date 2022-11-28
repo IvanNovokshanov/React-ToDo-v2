@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import classes from './style.module.css';
+import React, { FC, useState } from 'react';
+import style from './style.module.css';
 import { useDispatch } from 'react-redux';
 import {
 	toggleThunk,
@@ -10,68 +10,84 @@ import { ITodo } from '../../../../models';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 interface todoProps {
-	todo: ITodo;
-	onClickCard: () => void;
+	task: ITodo;
+	onClickCard: (todo: ITodo) => void;
 }
 
-export const Todo: FC<todoProps> = ({ todo, onClickCard }) => {
+export const Todo: FC<todoProps> = ({ task, onClickCard }) => {
+	const [cardList, setCardList] = useState();
+	const [currentCard, setCurrentCard] = useState(null);
+	console.log('!!!', cardList);
+
 	const dispatch: any = useDispatch();
 	const toggleTodoButton = (id: string) => {
-		dispatch(toggleThunk(id, todo));
+		console.log('TOGL');
+
+		dispatch(toggleThunk(id, task));
 	};
 	const importantTodoButton = (id: string) => {
-		dispatch(importantThunk(id, todo));
+		console.log('IMPORT');
+		dispatch(importantThunk(id, task));
 	};
 	const deleteTodoButton = (id: string) => {
 		dispatch(deleteThunk(id));
 	};
+
+	function dragStartHandler(e, { task }) {
+		console.log('drag', task);
+		setCurrentCard(task);
+	}
+	function dragLeaveHandler(e) {}
+	function dragEndHandler(e) {
+		e.target.style.background = 'white';
+	}
+	function dragOverHandler(e) {
+		e.preventDefault();
+		e.target.style.background = 'lightgray';
+	}
+	function dropHandler(e, { task }) {
+		e.preventDefault();
+		setCardList();
+		console.log('drop', task);
+	}
 	return (
-		<div onClick={() => onClickCard()}>
-			<div className={classes.todo}>
-				<div className={todo.important ? classes.imp : classes.not}>
-					<p className={todo.completed ? classes.done : classes.not}>
-						{todo.title}
-					</p>
-				</div>
-				<div className={classes.buttonGroup}>
-					<p className={classes.date}>{todo.date}</p>
-					<i
-						className="bi bi-check-square toggleButton"
-						onClick={() => toggleTodoButton(todo.id)}
-					></i>
-					<i
-						className="bi bi-exclamation-square importantButton "
-						onClick={() => importantTodoButton(todo.id)}
-					></i>
-					<i
-						className="bi bi-trash deleteButton"
-						onClick={() => deleteTodoButton(todo.id)}
-					></i>
-				</div>
-			</div>
-		</div>
+		// <div
+		// 	className="card"
+		// 	onDragStart={e => dragStartHandler(e, { task })}
+		// 	onDragLeave={e => dragEndHandler(e)}
+		// 	onDragEnd={e => dragEndHandler(e)}
+		// 	onDragOver={e => dragOverHandler(e)}
+		// 	onDrop={e => dropHandler(e, { task })}
+		// 	draggable={true}
+		// >
+		// 	{task.title}
+		// </div>
+		<></>
 	);
 };
+
 // return (
-// 	<div className={classes.todo}>
-// 		<div className={todo.important ? classes.imp : classes.not}>
-// 			<p className={todo.completed ? classes.done : classes.not}>
-// 				{todo.title}
-// 			</p>
+// 	<div className={style.todo}>
+// 		<div onClick={() => onClickCard(task)}>
+// 			<div className={task.important ? style.imp : style.not}>
+// 				<div className={task.completed ? style.done : style.not}>
+// 					<p className={style.title_text}>{task.title}</p>
+// 				</div>
+// 			</div>
 // 		</div>
-// 		<div className={classes.buttonGroup}>
-// 			<p className={classes.date}>{todo.date}</p>
+// 		<div className={style.buttonGroup}>
+// 			<p className={style.date}>{task.date}</p>
 // 			<i
 // 				className="bi bi-check-square toggleButton"
-// 				onClick={() => toggleTodoButton(todo.id)}
+// 				onClick={() => toggleTodoButton(task.id)}
 // 			></i>
 // 			<i
 // 				className="bi bi-exclamation-square importantButton "
-// 				onClick={() => importantTodoButton(todo.id)}
+// 				onClick={() => importantTodoButton(task.id)}
 // 			></i>
 // 			<i
 // 				className="bi bi-trash deleteButton"
-// 				onClick={() => deleteTodoButton(todo.id)}
+// 				onClick={() => deleteTodoButton(task.id)}
 // 			></i>
 // 		</div>
 // 	</div>

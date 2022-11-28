@@ -39,14 +39,14 @@ export const AddTodo = () => {
 					className={classes.inputArea}
 					type="text"
 					value={titleTextValue}
-					placeholder="введите текст"
+					placeholder="введите заголовок"
 					onChange={e => setTitleTextValue(e.target.value)}
 				/>
 				<input
 					className={classes.inputArea}
 					type="text"
 					value={descriptionTextValue}
-					placeholder="введите текст"
+					placeholder="введите описание задачи"
 					onChange={e => setDescriptionTextValue(e.target.value)}
 				/>
 				<i

@@ -1,15 +1,25 @@
+/* * {
+	box-sizing: border-box;
+} */
+
 .popup {
 	position: absolute;
+	left: 50%;
 	top: 50%;
-	left: calc(50% - 325px);
+	transform: translate(-50%, -50%);
 	z-index: 1001;
-	display: flex;
+	/* display: flex;
 	align-items: center;
-	justify-content: space-between;
-	padding: 40px;
-	max-width: 750px;
+	justify-content: space-between; */
+
+	max-width: 1250px;
+	max-height: 800px;
 	width: 100%;
-	background-color: aquamarine;
+	height: 100%;
+	background-color: rgb(255, 255, 255);
+}
+.popup_container {
+	padding: 40px;
 }
 .blur {
 	position: absolute;
@@ -26,10 +36,8 @@
 	top: 20px;
 	right: 20px;
 	cursor: pointer;
-}
-svg {
 	transition: 0.3s;
 }
-/* :hover {
+.close:hover {
 	transform: rotate(1turn);
-} */
+}

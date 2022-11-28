@@ -7,21 +7,34 @@
 // 		reducer: rootReducer
 // 	});
 // };
-import { applyMiddleware } from 'redux';
+import { applyMiddleware, combineReducers, createStore, Store } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { configureStore } from '@reduxjs/toolkit';
 import { todoSliceReducer } from './todoSlice';
 import { projectSliceReducer } from './projectsSlice';
 import thunk from 'redux-thunk';
-const composeEnhancers = composeWithDevTools({});
+import { StoreState } from '../models';
 
-export const store = configureStore({
-	reducer: {
-		todo: todoSliceReducer,
-		jira: projectSliceReducer
-	},
-	middleware: [thunk]
+export const storeReducer = combineReducers({
+	todo: todoSliceReducer,
+	jira: projectSliceReducer
 });
+
+const configureStore = (): Store<StoreState> => {
+	const middleware = [thunk];
+	const enhancers = [applyMiddleware(...middleware)];
+	const store = createStore(storeReducer, composeWithDevTools(...enhancers));
+
+	return store;
+};
+
+export const store = configureStore();
+// ({
+// 	reducer: {
+// 		todo: todoSliceReducer,
+// 		jira: projectSliceReducer
+// 	},
+// 	middleware: [thunk]
+// });
 
 export type AppStore = typeof store;
 export type AppDispatch = AppStore['dispatch'];

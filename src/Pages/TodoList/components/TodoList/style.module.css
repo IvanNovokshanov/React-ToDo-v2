@@ -18,3 +18,57 @@
 	color: white;
 	background-color: black;
 }
+
+/* .hero {
+	background-color: cadetblue;
+}
+.wrapper {
+	max-width: 1400px;
+	margin: 0 auto;
+}
+
+.list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin: 100px 0;
+}
+.list_caption {
+	width: calc(33.3% - 40px);
+	margin: 20px;
+	list-style-type: none;
+	font-weight: bold;
+	color: chocolate;
+}
+.list_cell {
+	width: calc(33.3% - 40px);
+	margin: 0 20px;
+	min-height: 150px;
+	list-style-type: none;
+	box-shadow: 0px 0px 7px 5px rgba(0, 0, 0, 0.2);
+	background-color: blanchedalmond;
+	overflow: hidden;
+}
+.list_card {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	text-align: center;
+	min-height: 100%;
+	cursor: all-scroll;
+}
+.list_card_header {
+	font-weight: bold;
+	padding: 12px 20px;
+	background-color: blue;
+	color: white;
+}
+.list_card_info {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	flex-grow: 1;
+	padding: 12px 20px;
+	text-transform: uppercase;
+} */

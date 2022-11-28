@@ -8,6 +8,7 @@ import { AppDispatch } from '../store';
 const initialState: { projects: IProject[] } = {
 	projects: []
 };
+
 export const projectsSlice = createSlice({
 	name: 'projects',
 	initialState,

@@ -9,7 +9,6 @@ export const App = () => {
 		<div className="root">
 			<Routes>
 				<Route path="/" element={<HomePage />} />
-
 				<Route
 					path="/task/:project"
 					element={
