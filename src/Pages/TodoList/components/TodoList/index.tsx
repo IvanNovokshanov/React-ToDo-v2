@@ -1,24 +1,30 @@
 import React, { useState, useEffect, FC } from 'react';
 import { useParams } from 'react-router-dom';
-import { getTodosThunk } from '../../../../store/todoSlice';
-import { Todo } from '../Todo';
 import style from './style.module.css';
-import { ITodo } from '../../../../models';
+import { ITodo, List, Board } from '../../../../models';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProjects, getTodos } from '../../../../selectors/jira';
+import { getTodos } from '../../../../selectors/jira';
 import { Popup } from '../Popup';
+import { statusUpdateThunk } from '../../../../store/todoSlice';
+import {
+	toggleThunk,
+	importantThunk,
+	deleteThunk
+} from '../../../../store/todoSlice';
 
 export const TodoList = () => {
+	//State
+	const dispatch: any = useDispatch();
 	const { project } = useParams();
 	const [isShow, setIsShow] = useState(false);
 	const [dataPopup, setDataPopup] = useState<ITodo>();
 
-	const dispatch: any = useDispatch();
 	const todosData = useSelector(getTodos);
-
 	const filteredTasks = todosData.filter(
 		(el: ITodo) => el.project === project
 	);
+
+	// Popup
 
 	const onClickCard = (task: ITodo) => {
 		setIsShow(true);
@@ -28,68 +34,116 @@ export const TodoList = () => {
 		setIsShow(false);
 	};
 
-	const [cardList, setCardList] = useState(filteredTasks);
-	const [currentCard, setCurrentCard] = useState(null);
-	console.log('filteredTasks', filteredTasks);
-	console.log('cardList', cardList);
+	// Board
 
-	function dragStartHandler(e, card) {
-		console.log('drag', card);
-		setCurrentCard(card);
-	}
-	function dragLeaveHandler(e) {}
-	function dragEndHandler(e) {
-		e.target.style.background = 'white';
-	}
+	const boardInitialState = [
+		{ id: 1, title: 'Queue', items: [] },
+		{ id: 2, title: 'Development', items: [] },
+		{ id: 3, title: 'Done', items: [] }
+	];
+
+	const [boards, setBoards] = useState(boardInitialState);
+
+	const [currentBoard, setCurrentBoard] = useState(null);
+	const [currentItem, setCurrentItem] = useState(null);
 	function dragOverHandler(e) {
 		e.preventDefault();
-		e.target.style.background = 'lightgray';
+		if (e.target.className == 'item') {
+			e.target.style.boxShadow = '0 4px 3px gray';
+		}
 	}
-	function dropHandler(e, card) {
+	function dragLeaveHandler(e) {
+		e.target.style.boxShadow = 'none';
+	}
+	function dragStartHandler(e, item, board) {
+		setCurrentBoard(board);
+		setCurrentItem(item);
+	}
+	function dragEndHandler(e) {
+		e.target.style.boxShadow = 'none';
+	}
+	function dropHandler(e, item, board) {
 		e.preventDefault();
-		setCardList(
-			cardList.map(el => {
-				if (el.id === card.id) {
-					return { ...el, order: currentCard.order };
+		const currentIndex = currentBoard.items.indexOf(currentItem);
+		currentBoard.items.splice(currentIndex, 1);
+		const dropIndex = board.items.indexOf(item);
+		currentBoard.items.splice(dropIndex + 1, 0, currentItem);
+		setBoards(
+			boards.map(b => {
+				if (b.id === board.id) {
+					return board;
 				}
-				if (el.id === currentCard.id) {
-					return { ...el, order: card.order };
+				if (b.id === currentBoard.id) {
+					return currentBoard;
 				}
-				return el;
+				return b;
 			})
 		);
-		e.target.style.background = 'white';
-		console.log('drop', card);
+	}
+	function dropCardHandler(e, board) {
+		board.items.concat(currentItem);
+		const currentIndex = currentBoard.items.indexOf(currentItem);
+		currentBoard.items.splice(currentIndex, 1);
+
+		const newCurrentItem = { ...currentItem, status: board.title };
+		dispatch(statusUpdateThunk(newCurrentItem.id, newCurrentItem));
+		setBoards(
+			boards.map(b => {
+				if (b.id === board.id) {
+					return board;
+				}
+				if (b.id === currentBoard.id) {
+					return currentBoard;
+				}
+				return b;
+			})
+		);
 	}
 
-	const sortCards = (a, b) => {
-		if (a.order > b.order) {
-			return 1;
-		} else {
-			return -1;
-		}
-	};
+	//useEffect
+
 	useEffect(() => {
-		dispatch(getTodosThunk());
-	}, []);
+		if (filteredTasks.length > 0) {
+			setBoards(prev => {
+				return prev.map(el => ({
+					...el,
+					items: filteredTasks.filter(
+						task => task.status === el.title
+					)
+				}));
+			});
+		}
+	}, [todosData]);
 
 	return (
 		<>
 			{isShow && <Popup closePopup={closePopup} dataPopup={dataPopup} />}
 			<div className="card_container">
-				{cardList.sort(sortCards).map(card => (
+				{boards.map(board => (
 					<div
-						className="card"
-						key={card.id}
-						onClick={() => onClickCard(card)}
-						onDragStart={e => dragStartHandler(e, card)}
-						onDragLeave={e => dragEndHandler(e)}
-						onDragEnd={e => dragEndHandler(e)}
+						key={board.id}
+						className="board"
 						onDragOver={e => dragOverHandler(e)}
-						onDrop={e => dropHandler(e, card)}
-						draggable={true}
+						onDrop={e => dropCardHandler(e, board)}
 					>
-						{card.title}
+						<div className="board_title">{board.title}</div>
+						{board.items.map((item, index) => (
+							<div
+								onClick={() => onClickCard(item)}
+								key={item.id}
+								className="item"
+								onDragOver={e => dragOverHandler(e)}
+								onDragLeave={e => dragLeaveHandler(e)}
+								onDragStart={e =>
+									dragStartHandler(e, item, board)
+								}
+								onDragEnd={e => dragEndHandler(e)}
+								onDrop={e => dropHandler(e, item, board)}
+								draggable={true}
+							>
+								{item.title}
+							</div>
+						))}
 					</div>
 				))}
 			</div>

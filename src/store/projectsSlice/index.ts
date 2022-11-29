@@ -15,7 +15,6 @@ export const projectsSlice = createSlice({
 	reducers: {
 		addProjects: (state, action) => ({
 			...state,
-			// projects: state.projects.concat(action.payload)
 			projects: action.payload
 		})
 	}

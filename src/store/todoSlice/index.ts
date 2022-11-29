@@ -30,6 +30,14 @@ export const todoSlice = createSlice({
 
 			todos: action.payload
 		}),
+		statusUpdater: (state, action) => ({
+			...state,
+			todos: state.todos.map(el =>
+				el.id === action.payload.currentId
+					? { ...el, status: action.payload.currentTodo.status }
+					: el
+			)
+		}),
 		toggleCompleted: (state, action) => ({
 			...state,
 			todos: state.todos.map(obj =>
@@ -64,6 +72,16 @@ export const toggleThunk =
 		await completeTodoFetch(id, newTodo);
 		dispatch(toggleCompleted(id));
 	};
+
+export const statusUpdateThunk =
+	(id: string, todo: ITodo) => async (dispatch: AppDispatch) => {
+		const newPayload = {
+			currentId: id,
+			currentTodo: todo
+		};
+		await completeTodoFetch(id, todo);
+		dispatch(statusUpdater(newPayload));
+	};
 export const importantThunk =
 	(id: string, todo: ITodo) => async (dispatch: AppDispatch) => {
 		const newTodo = { ...todo, important: !todo.important };
@@ -80,7 +98,8 @@ export const {
 	toggleCompleted,
 	importantCompleted,
 	deleteTodo,
-	getTodosAction
+	getTodosAction,
+	statusUpdater
 } = todoSlice.actions;
 
 export const todoSliceReducer = todoSlice.reducer;

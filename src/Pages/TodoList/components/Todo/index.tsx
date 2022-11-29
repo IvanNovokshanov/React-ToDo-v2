@@ -33,62 +33,30 @@ export const Todo: FC<todoProps> = ({ task, onClickCard }) => {
 		dispatch(deleteThunk(id));
 	};
 
-	function dragStartHandler(e, { task }) {
-		console.log('drag', task);
-		setCurrentCard(task);
-	}
-	function dragLeaveHandler(e) {}
-	function dragEndHandler(e) {
-		e.target.style.background = 'white';
-	}
-	function dragOverHandler(e) {
-		e.preventDefault();
-		e.target.style.background = 'lightgray';
-	}
-	function dropHandler(e, { task }) {
-		e.preventDefault();
-		setCardList();
-		console.log('drop', task);
-	}
 	return (
-		// <div
-		// 	className="card"
-		// 	onDragStart={e => dragStartHandler(e, { task })}
-		// 	onDragLeave={e => dragEndHandler(e)}
-		// 	onDragEnd={e => dragEndHandler(e)}
-		// 	onDragOver={e => dragOverHandler(e)}
-		// 	onDrop={e => dropHandler(e, { task })}
-		// 	draggable={true}
-		// >
-		// 	{task.title}
-		// </div>
-		<></>
+		<div className={style.todo}>
+			<div onClick={() => onClickCard(task)}>
+				<div className={task.important ? style.imp : style.not}>
+					<div className={task.completed ? style.done : style.not}>
+						<p className={style.title_text}>{task.title}</p>
+					</div>
+				</div>
+			</div>
+			<div className={style.buttonGroup}>
+				<p className={style.date}>{task.date}</p>
+				<i
+					className="bi bi-check-square toggleButton"
+					onClick={() => toggleTodoButton(task.id)}
+				></i>
+				<i
+					className="bi bi-exclamation-square importantButton "
+					onClick={() => importantTodoButton(task.id)}
+				></i>
+				<i
+					className="bi bi-trash deleteButton"
+					onClick={() => deleteTodoButton(task.id)}
+				></i>
+			</div>
+		</div>
 	);
 };
-
-// return (
-// 	<div className={style.todo}>
-// 		<div onClick={() => onClickCard(task)}>
-// 			<div className={task.important ? style.imp : style.not}>
-// 				<div className={task.completed ? style.done : style.not}>
-// 					<p className={style.title_text}>{task.title}</p>
-// 				</div>
-// 			</div>
-// 		</div>
-// 		<div className={style.buttonGroup}>
-// 			<p className={style.date}>{task.date}</p>
-// 			<i
-// 				className="bi bi-check-square toggleButton"
-// 				onClick={() => toggleTodoButton(task.id)}
-// 			></i>
-// 			<i
-// 				className="bi bi-exclamation-square importantButton "
-// 				onClick={() => importantTodoButton(task.id)}
-// 			></i>
-// 			<i
-// 				className="bi bi-trash deleteButton"
-// 				onClick={() => deleteTodoButton(task.id)}
-// 			></i>
-// 		</div>
-// 	</div>
-// );

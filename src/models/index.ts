@@ -1,6 +1,7 @@
 export type ITodo = {
 	id: string;
 	project: string | undefined;
+	status: string;
 	title: string;
 	description: string;
 	completed: boolean;
@@ -22,3 +23,11 @@ export type StoreState = {
 		projects: IProject[];
 	};
 };
+
+export type Board = [
+	{
+		id: number;
+		title: string;
+		items: ITodo[];
+	}
+];

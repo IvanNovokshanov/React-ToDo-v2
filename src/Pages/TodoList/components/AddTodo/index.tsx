@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux/es/exports';
 import { addTodo } from '../../../../store/todoSlice';
 import { nanoid } from 'nanoid';
 import logo from '../../../../../public/images/pngegg.png';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 export const AddTodo = () => {
 	const { project } = useParams();
@@ -17,6 +18,7 @@ export const AddTodo = () => {
 			id: nanoid(),
 			project: project,
 			title: titleTextValue,
+			status: 'Queue',
 			description: descriptionTextValue,
 			completed: false,
 			important: false,
