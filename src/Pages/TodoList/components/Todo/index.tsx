@@ -21,12 +21,9 @@ export const Todo: FC<todoProps> = ({ task, onClickCard }) => {
 
 	const dispatch: any = useDispatch();
 	const toggleTodoButton = (id: string) => {
-		console.log('TOGL');
-
 		dispatch(toggleThunk(id, task));
 	};
 	const importantTodoButton = (id: string) => {
-		console.log('IMPORT');
 		dispatch(importantThunk(id, task));
 	};
 	const deleteTodoButton = (id: string) => {

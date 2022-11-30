@@ -41,6 +41,18 @@ export const completeTodoFetch = async (id: string, todo: ITodo) => {
 	return await response.json();
 };
 
+export const textUpdateFetch = async (id: string, todo: ITodo) => {
+	const response = await fetch(`http://localhost:3000/posts/${id}`, {
+		method: 'PUT',
+		body: JSON.stringify(todo),
+
+		headers: {
+			'Content-Type': 'application/json;charset=utf-8'
+		}
+	});
+	return await response.json();
+};
+
 export const importantTodoFetch = async (id: string, todo: ITodo) => {
 	const response = await fetch(`http://localhost:3000/posts/${id}`, {
 		method: 'PUT',

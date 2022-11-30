@@ -18,6 +18,13 @@
 	color: white;
 	background-color: black;
 }
+.done {
+	text-decoration: line-through;
+}
+.imp {
+	color: rgb(245, 30, 10);
+	/* font-weight: 800; */
+}
 
 /* .hero {
 	background-color: cadetblue;

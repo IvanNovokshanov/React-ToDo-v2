@@ -13,7 +13,7 @@
 	background-color: rgb(255, 255, 255);
 }
 .popup_container {
-	padding: 40px;
+	padding: 80px;
 }
 .blur {
 	position: absolute;
@@ -27,8 +27,8 @@
 }
 .close {
 	position: absolute;
-	top: 20px;
-	right: 20px;
+	top: 30px;
+	right: 30px;
 	cursor: pointer;
 	transition: 0.3s;
 }
@@ -39,5 +39,47 @@
 	font-size: 20px;
 }
 .description_task {
-	font-size: 45px;
+	font-size: 35px;
+}
+
+.btn_group {
+	width: 30px;
+	height: 30px;
+	color: chartreuse;
+}
+.popup_text {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding-bottom: 30px;
+	width: 880px;
+	word-break: break-all;
+}
+.title_task {
+	color: rgb(31, 16, 238);
+}
+.task_details_box {
+	padding-top: 30px;
+}
+.task_details_box {
+	display: flex;
+	list-style-type: none;
+}
+.task_request_block {
+	list-style-type: none;
+	color: rgb(74, 74, 75);
+}
+.task_response_block {
+	list-style-type: none;
+	font-weight: 600;
+}
+.input_task {
+	background-color: rgb(238, 238, 233);
+	border-radius: 8px;
+}
+.priority {
+	color: red;
+}
+.not_priority {
+	color: green;
 }

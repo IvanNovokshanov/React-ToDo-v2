@@ -6,23 +6,26 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getTodos } from '../../../../selectors/jira';
 import { Popup } from '../Popup';
 import { statusUpdateThunk } from '../../../../store/todoSlice';
-import {
-	toggleThunk,
-	importantThunk,
-	deleteThunk
-} from '../../../../store/todoSlice';
 
 export const TodoList = () => {
+	const iTodo: ITodo = {
+		id: '',
+		project: '',
+		status: '',
+		title: '',
+		description: '',
+		completed: false,
+		important: false,
+		date: ''
+	};
 	//State
 	const dispatch: any = useDispatch();
 	const { project } = useParams();
 	const [isShow, setIsShow] = useState(false);
-	const [dataPopup, setDataPopup] = useState<ITodo>();
+	const [dataPopup, setDataPopup] = useState<ITodo>(iTodo);
 
 	const todosData = useSelector(getTodos);
-	const filteredTasks = todosData.filter(
-		(el: ITodo) => el.project === project
-	);
+	const filteredTasks = todosData.filter(el => el.project === project);
 
 	// Popup
 
@@ -36,38 +39,49 @@ export const TodoList = () => {
 
 	// Board
 
-	const boardInitialState = [
-		{ id: 1, title: 'Queue', items: [] },
-		{ id: 2, title: 'Development', items: [] },
-		{ id: 3, title: 'Done', items: [] }
+	const boardInitialState: Board[] = [
+		{ id: 1, title: 'Queue', items: [iTodo] },
+		{ id: 2, title: 'Development', items: [iTodo] },
+		{ id: 3, title: 'Done', items: [iTodo] }
 	];
 
 	const [boards, setBoards] = useState(boardInitialState);
 
-	const [currentBoard, setCurrentBoard] = useState(null);
-	const [currentItem, setCurrentItem] = useState(null);
-	function dragOverHandler(e) {
+	const [currentBoard, setCurrentBoard] = useState<Board>(
+		boardInitialState[0]
+	);
+	const [currentTodo, setCurrentTodo] = useState<ITodo>(iTodo);
+
+	function dragOverHandler(e: React.DragEvent<HTMLDivElement>) {
 		e.preventDefault();
-		if (e.target.className == 'item') {
-			e.target.style.boxShadow = '0 4px 3px gray';
+		const { className, style } = e.target as HTMLElement;
+		if (className == 'item') {
+			style.boxShadow = '0 4px 3px gray';
 		}
 	}
-	function dragLeaveHandler(e) {
-		e.target.style.boxShadow = 'none';
+	function dragLeaveHandler(e: React.DragEvent<HTMLDivElement>) {
+		const { style } = e.target as HTMLElement;
+		style.boxShadow = 'none';
 	}
-	function dragStartHandler(e, item, board) {
+	function dragStartHandler(item: ITodo, board: Board) {
 		setCurrentBoard(board);
-		setCurrentItem(item);
+		setCurrentTodo(item);
 	}
-	function dragEndHandler(e) {
-		e.target.style.boxShadow = 'none';
+	function dragEndHandler(e: React.DragEvent<HTMLDivElement>) {
+		const { style } = e.target as HTMLElement;
+		style.boxShadow = 'none';
 	}
-	function dropHandler(e, item, board) {
+	function dropHandler(
+		e: React.DragEvent<HTMLDivElement>,
+		item: ITodo,
+		board: Board
+	) {
 		e.preventDefault();
-		const currentIndex = currentBoard.items.indexOf(currentItem);
+		const currentIndex = currentBoard.items.indexOf(currentTodo);
+
 		currentBoard.items.splice(currentIndex, 1);
 		const dropIndex = board.items.indexOf(item);
-		currentBoard.items.splice(dropIndex + 1, 0, currentItem);
+		currentBoard.items.splice(dropIndex + 1, 0, currentTodo);
 		setBoards(
 			boards.map(b => {
 				if (b.id === board.id) {
@@ -80,12 +94,13 @@ export const TodoList = () => {
 			})
 		);
 	}
-	function dropCardHandler(e, board) {
-		board.items.concat(currentItem);
-		const currentIndex = currentBoard.items.indexOf(currentItem);
+	function dropCardHandler(e: React.DragEvent<HTMLDivElement>, board: Board) {
+		board.items.concat(currentTodo);
+		console.log('currentItem', currentTodo);
+		const currentIndex = currentBoard.items.indexOf(currentTodo);
 		currentBoard.items.splice(currentIndex, 1);
 
-		const newCurrentItem = { ...currentItem, status: board.title };
+		const newCurrentItem = { ...currentTodo, status: board.title };
 		dispatch(statusUpdateThunk(newCurrentItem.id, newCurrentItem));
 		setBoards(
 			boards.map(b => {
@@ -99,7 +114,6 @@ export const TodoList = () => {
 			})
 		);
 	}
-
 	//useEffect
 
 	useEffect(() => {
@@ -113,7 +127,7 @@ export const TodoList = () => {
 				}));
 			});
 		}
-	}, [todosData]);
+	}, [todosData, dataPopup]);
 
 	return (
 		<>
@@ -134,14 +148,28 @@ export const TodoList = () => {
 								className="item"
 								onDragOver={e => dragOverHandler(e)}
 								onDragLeave={e => dragLeaveHandler(e)}
-								onDragStart={e =>
-									dragStartHandler(e, item, board)
+								onDragStart={() =>
+									dragStartHandler(item, board)
 								}
 								onDragEnd={e => dragEndHandler(e)}
 								onDrop={e => dropHandler(e, item, board)}
 								draggable={true}
 							>
-								{item.title}
+								<div
+									className={
+										item.important ? style.imp : style.not
+									}
+								>
+									<div
+										className={
+											item.completed
+												? style.done
+												: style.not
+										}
+									>
+										{item.title}
+									</div>
+								</div>
 							</div>
 						))}
 					</div>

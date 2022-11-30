@@ -24,10 +24,8 @@ export type StoreState = {
 	};
 };
 
-export type Board = [
-	{
-		id: number;
-		title: string;
-		items: ITodo[];
-	}
-];
+export type Board = {
+	id: number;
+	title: string;
+	items: ITodo[];
+};

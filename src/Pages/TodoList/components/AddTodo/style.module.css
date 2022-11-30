@@ -2,9 +2,12 @@
 	background-color: aqua;
 }
 .addTodoBlock {
-	display: flex;
-	justify-content: center;
-	padding-top: 60px;
+	margin: 0 auto;
+	padding-top: 20px;
+	width: 600px;
+}
+.btn {
+	padding-bottom: 30px;
 }
 .inputArea {
 	border: 1px solid;
