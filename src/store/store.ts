@@ -1,12 +1,3 @@
-// import { combineReducers, configureStore } from '@reduxjs/toolkit';
-
-// const rootReducer = combineReducers({});
-
-// export const setupStore = () => {
-// 	return configureStore({
-// 		reducer: rootReducer
-// 	});
-// };
 import { applyMiddleware, combineReducers, createStore, Store } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { todoSliceReducer } from './todoSlice';
@@ -28,13 +19,6 @@ const configureStore = (): Store<StoreState> => {
 };
 
 export const store = configureStore();
-// ({
-// 	reducer: {
-// 		todo: todoSliceReducer,
-// 		jira: projectSliceReducer
-// 	},
-// 	middleware: [thunk]
-// });
 
 export type AppStore = typeof store;
 export type AppDispatch = AppStore['dispatch'];

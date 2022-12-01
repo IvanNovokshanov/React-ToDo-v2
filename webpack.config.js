@@ -17,7 +17,6 @@ module.exports = {
 	devServer: {
 		historyApiFallback: true,
 		static: path.resolve(__dirname, './public'),
-		// open: true, открывает каждый раз при запуске дев сервера новое окно в браузере
 		compress: true,
 		hot: true,
 		port: 8080

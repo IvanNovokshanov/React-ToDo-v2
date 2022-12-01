@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import style from './style.module.css';
 import close from '../../../../../public/images/close.svg';
 import { ITodo, StoreState } from '../../../../models';
@@ -11,10 +11,7 @@ import {
 	deleteThunk,
 	titleUpdateThunk
 } from '../../../../store/todoSlice';
-import {
-	getTodosThunk,
-	descriptionUpdateThunk
-} from '../../../../store/todoSlice';
+import { descriptionUpdateThunk } from '../../../../store/todoSlice';
 import { getCompleted, getImportant } from '../../../../selectors/jira';
 
 interface IPopupProps {
@@ -24,7 +21,6 @@ interface IPopupProps {
 
 export const Popup: FC<IPopupProps> = ({ closePopup, dataPopup }) => {
 	const date = dateConvertor(dataPopup.date);
-	console.log(dataPopup);
 	const important = useSelector((state: StoreState) =>
 		getImportant(dataPopup.id, state)
 	);
@@ -180,74 +176,3 @@ export const Popup: FC<IPopupProps> = ({ closePopup, dataPopup }) => {
 		</>
 	);
 };
-
-{
-	/* <>
-			<div className={style.blur}></div>
-			<div className={style.popup}>
-				<div className={style.popup_container}>
-					<div className={style.popup_text}>
-						<div className={style.title_task}>
-							{dataPopup?.title}
-						</div>
-						<div className={style.description_task}>
-							{dataPopup?.description}
-						</div>
-					</div>
-					<div className={style.button_group}>
-						<div
-							className="btn-group"
-							role="group"
-							aria-label="Default button group"
-						>
-							<button
-								type="button"
-								className="btn btn-outline-dark"
-								onClick={() =>
-									importantTodoButton(dataPopup.id)
-								}
-							>
-								Изменить приоритет
-							</button>
-							<button
-								type="button"
-								className="btn btn-outline-dark"
-								onClick={() => toggleTodoButton(dataPopup.id)}
-							>
-								Изменить статус
-							</button>
-							<button
-								type="button"
-								className="btn btn-outline-dark"
-								onClick={() => deleteTodoButton(dataPopup.id)}
-							>
-								Удалить задачу
-							</button>
-						</div>
-					</div>
-					<div className={style.task_details_box}>
-						<ul className={style.task_request_block}>
-							<li>Статус:</li>
-							<li>Приоритет:</li>
-							<li>Дата создания:</li>
-							<li>В работе времени:</li>
-						</ul>
-						<ul className={style.task_response_block}>
-							<li>
-								{dataPopup?.completed ? 'Готово' : 'В работе'}
-							</li>
-							<li>
-								{dataPopup?.important
-									? 'Высокий приоритет'
-									: 'Обычный'}
-							</li>
-							<li>{dataPopup?.date.toString()}</li>
-							<li>{`${date[0]} Дни ${date[1]} Часы ${date[2]} Минуты`}</li>
-						</ul>
-					</div>
-				</div>
-
-				<img className={style.close} src={close} onClick={closePopup} />
-			</div>
-		</> */
-}

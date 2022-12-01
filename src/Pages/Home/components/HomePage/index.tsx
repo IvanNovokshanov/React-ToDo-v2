@@ -7,11 +7,6 @@ import { IProject } from '../../../../models';
 import { getProjects, getTodos } from '../../../../selectors/jira';
 import logo from '../../../../../public/images/pngegg.png';
 
-// interface IProject {
-// 	id: string;
-// 	project: string;
-// }
-
 export const HomePage = () => {
 	const projectData = useSelector(getProjects);
 	const todosData = useSelector(getTodos);
@@ -54,16 +49,3 @@ export const HomePage = () => {
 		</div>
 	);
 };
-
-{
-	/* <div>
-			<h1> Проекты:</h1>
-			<ul>
-				{projectData?.map((el: IProject) => (
-					<NavLink to={`task/${el.project}`} key={el.id}>
-						<li>{el.project}</li>
-					</NavLink>
-				))}
-			</ul>
-		</div> */
-}
