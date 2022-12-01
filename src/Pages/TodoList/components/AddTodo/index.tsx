@@ -39,7 +39,7 @@ export const AddTodo = () => {
 				<div className="mb-3">
 					<label className="form-label">Заголовок задачи</label>
 					<input
-						type="email"
+						type="text"
 						className="form-control"
 						id="exampleFormControlInput1"
 						placeholder="введите текст"

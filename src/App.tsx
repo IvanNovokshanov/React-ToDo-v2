@@ -30,23 +30,3 @@ export const App = () => {
 		</div>
 	);
 };
-
-// export const App = () => {
-// 	return (
-// 		<div className="root">
-// 			<Routes>
-// 				<Route path="/" element={<HomePage />} />
-
-// 				<Route
-// 					path="/task"
-// 					element={
-// 						<>
-// 							<AddTodo />
-// 							<TodoList />
-// 						</>
-// 					}
-// 				/>
-// 			</Routes>
-// 		</div>
-// 	);
-// };

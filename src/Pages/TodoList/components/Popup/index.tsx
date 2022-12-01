@@ -82,9 +82,10 @@ export const Popup: FC<IPopupProps> = ({ closePopup, dataPopup }) => {
 		);
 	} else {
 		elemDescription = (
-			<input
+			<textarea
 				value={descriptionValue}
 				className={style.input_task}
+				rows={3}
 				onChange={event => setDescriptionValue(event.target.value)}
 				onBlur={() => {
 					setIsEditDescription(false);

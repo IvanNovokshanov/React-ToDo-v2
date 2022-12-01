@@ -15,7 +15,6 @@ import logo from '../../../../../public/images/pngegg.png';
 export const HomePage = () => {
 	const projectData = useSelector(getProjects);
 	const todosData = useSelector(getTodos);
-	console.log('PROJECT', todosData);
 
 	const dispatch: any = useDispatch();
 
@@ -32,9 +31,14 @@ export const HomePage = () => {
 			<div className={style.list_group_container}>
 				<ul className="list-group">
 					{projectData?.map((el: IProject) => (
-						<NavLink to={`task/${el.project}`} key={el.id}>
-							<li className="list-group-item d-flex justify-content-between align-items-center">
+						<NavLink
+							to={`task/${el.project}`}
+							key={el.id}
+							className={style.link}
+						>
+							<li className="list-group-item d-flex justify-content-between  fw-bold align-items-center">
 								{el.project}
+
 								<span className="badge bg-primary rounded-pill">
 									{
 										todosData?.filter(
